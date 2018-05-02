@@ -101,21 +101,34 @@ def dMin(iReq, trg, maxTry):
 #     return iReq
 
 def tryReq(iReq, trg):
+  resp = reqReplay(iReq)
   res = 1
   for t in trg:
-    if t in iReq:
+    if t in resp:
       res = res & 1
     else:
       res = res & 0
   return res
 
+
+# def reqReplay(iReq):
+#   resp = [r*2 for r in iReq]
+#   # record responses to the requests made
+#   return resp
  
 
+def reqReplay(iReqs):
+  for req in iReqs:
+    
+
+
 def main():
+
+  
   
   # print chopReq([1,2,3,4,5,6,7,8,9,11,22,33,44,55,66,77,88,99], 20)
   # print chopReq([1], 4)
-  print dMin([0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9], [5,0,2], g_max_try)
+  print dMin([0,1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9], [4,0,10], g_max_try)
   pass
 
 if __name__ == '__main__':
