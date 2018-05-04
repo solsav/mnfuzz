@@ -35,7 +35,7 @@ def chopReq(iReq, n): # gets list of items, returns list of list of items(cunks)
     reqs = []
     for idx, r in enumerate(rs):
       if idx == 0:
-        reqs.append(iReq[:r])
+        reqs.append(iReq[:r]) # iReq.items()[:r] ????
         # elif idx == len(rs)-1:
         #   reqs.append(iReq[r:])
       else:
