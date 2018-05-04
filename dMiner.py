@@ -17,7 +17,7 @@ CWR = 0x80
 g_max_try = 20
 g_ini_parts = 5
 
-def chopReq(iReq, n):
+def chopReq(iReq, n): # gets list of items, returns list of list of items(cunks)
   if len(iReq) < 2:
     print 'Atomic chunk:', iReq
     return iReq
@@ -58,39 +58,64 @@ def dMin(iReq, trg, maxTry):
   chunks = chopReq(iReq, -1)
   if chunks is iReq:
     return iReq
+
   
   else:
     print 'Attempting minimization with', chunks
     for idx, c in enumerate(chunks):
-      c_p = [i for i in [e for chk in chunks for e in chk] if i not in c] # c prime
-      # if tryReq(c, trg) == 1:
-      #   # minimize c
-      #   miniReqs = c
-      #   dMin(c, trg, g_max_try)
-
-      # elif tryReq(c_p, trg) == 1:
-      #   # minimize c_p
-      #   miniReqs = c_p
-      #   dMin(c_p, trg, g_max_try)
-
-      # elif idx == len(chunks-1):
-      #   dMin(iReq, trg, maxTry-1)
-
-
-      if tryReq(c, trg) == 1:
-        # minimize c
-        miniReqs = c
-        break
+      c_p = [i for i in chunks if i is not c] # c prime      
+      print c , '\n', c_p
+    #   if testDialogue(c, trg) == 1:
+    #     # minimize c
+    #     miniReqs = c
+    #     break
         
-      elif tryReq(c_p, trg) == 1:
-        # minimize c_p
-        miniReqs = c_p
-        break
+    #   elif testDialogue(c_p, trg) == 1:
+    #     # minimize c_p
+    #     miniReqs = c_p
+    #     break
         
-    if miniReqs is iReq:
-      return dMin(miniReqs, trg, maxTry-1)
-    else:
-      return dMin(miniReqs, trg, g_max_try)
+    # if miniReqs is iReq:
+    #   return dMin(miniReqs, trg, maxTry-1)
+    # else:
+    #   return dMin(miniReqs, trg, g_max_try)
+  
+
+##### FOR LIST DS ########
+    
+  # else:
+  #   print 'Attempting minimization with', chunks
+  #   for idx, c in enumerate(chunks):
+  #     c_p = [i for i in chunks if i is not c] # c prime      
+  #     # c_p = [i for i in [e for chk in chunks for e in chk] if i not in c] # c prime
+  #     # if tryReq(c, trg) == 1:
+  #     #   # minimize c
+  #     #   miniReqs = c
+  #     #   dMin(c, trg, g_max_try)
+
+  #     # elif tryReq(c_p, trg) == 1:
+  #     #   # minimize c_p
+  #     #   miniReqs = c_p
+  #     #   dMin(c_p, trg, g_max_try)
+
+  #     # elif idx == len(chunks-1):
+  #     #   dMin(iReq, trg, maxTry-1)
+
+
+  #     if testDialogue(c, trg) == 1:
+  #       # minimize c
+  #       miniReqs = c
+  #       break
+        
+  #     elif testDialogue(c_p, trg) == 1:
+  #       # minimize c_p
+  #       miniReqs = c_p
+  #       break
+        
+  #   if miniReqs is iReq:
+  #     return dMin(miniReqs, trg, maxTry-1)
+  #   else:
+  #     return dMin(miniReqs, trg, g_max_try)
       
         
   
@@ -112,7 +137,7 @@ def dMin(iReq, trg, maxTry):
 #     print 'Minimum set is:', iReq
 #     return iReq
 
-def tryDlg(dialogue, trgPacks): 
+def testDialogue(dialogue, trgPacks): 
   trgLoad = []
   # for p in trgPacks:
   #   trgLoad.append(p[Raw].load)
